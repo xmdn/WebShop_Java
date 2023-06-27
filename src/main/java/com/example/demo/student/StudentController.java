@@ -11,6 +11,7 @@ public class StudentController {
     private final StudentService studentService;
     @Autowired
     public StudentController(StudentService studentService) {
+
         this.studentService = studentService;
     }
 
@@ -18,6 +19,10 @@ public class StudentController {
     public List<Student> getStudents() {
 
         return studentService.getStudents();
+    }
+    @GetMapping(path = "{studentId}")
+    public Student getStudent(@PathVariable("studentId") Long studentId) {
+        return studentService.getStudentById(studentId);
     }
     @PostMapping
     public void registerNewStudent(@RequestBody Student student) {

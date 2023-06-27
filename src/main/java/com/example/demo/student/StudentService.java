@@ -16,11 +16,16 @@ public class StudentService {
     private final StudentRepository studentRepository;
     @Autowired
     public StudentService(StudentRepository studentRepository) {
+
         this.studentRepository = studentRepository;
     }
 
     public List<Student> getStudents() {
+
         return studentRepository.findAll();
+    }
+    public Student getStudentById(Long studentId) {
+        return studentRepository.findById(studentId).orElse(null);
     }
 
     public void addNewStudent(Student student) {
