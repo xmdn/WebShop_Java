@@ -1,9 +1,11 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/student")
@@ -23,6 +25,16 @@ public class StudentController {
     @GetMapping(path = "{studentId}")
     public Student getStudent(@PathVariable("studentId") Long studentId) {
         return studentService.getStudentById(studentId);
+    }
+    @GetMapping("/search")
+    public ResponseEntity<Student> searchStudentByName(@RequestParam("name") String name) {
+        Optional<Student> studentOptional = studentService.getStudentByName(name);
+        if (studentOptional.isPresent()) {
+            Student student = studentOptional.get();
+            return ResponseEntity.ok(student);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
     @PostMapping
     public void registerNewStudent(@RequestBody Student student) {

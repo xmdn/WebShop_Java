@@ -27,6 +27,9 @@ public class StudentService {
     public Student getStudentById(Long studentId) {
         return studentRepository.findById(studentId).orElse(null);
     }
+    public Optional<Student> getStudentByName(String name) {
+        return studentRepository.findStudentByName(name);
+    }
 
     public void addNewStudent(Student student) {
         Optional<Student> studentOptional = studentRepository
