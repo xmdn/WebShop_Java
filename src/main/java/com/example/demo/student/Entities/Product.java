@@ -1,22 +1,20 @@
-package com.example.demo.student;
+package com.example.demo.student.Entities;
 
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.Period;
 
-@Entity
-@Table
-public class Student {
+public class Product {
     @Id
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "product_sequence",
+            sequenceName = "product_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
-           strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            strategy = GenerationType.SEQUENCE,
+            generator = "product_sequence"
     )
     private Long id;
     private String name;
@@ -25,10 +23,10 @@ public class Student {
     @Transient
     private Integer age;
 
-    public Student() {
+    public Product() {
     }
 
-    public Student(Long id,
+    public Product(Long id,
                    String name,
                    String email,
                    LocalDate dob) {
@@ -38,7 +36,7 @@ public class Student {
         this.dob = dob;
     }
 
-    public Student(String name,
+    public Product(String name,
                    String email,
                    LocalDate dob) {
         this.name = name;
